@@ -1,0 +1,55 @@
+This lecture 
+
+Well, to be honest, I have always resisted the thought of learning new technology even whenever the need arises. I have always dismissed the idea, considering that it could be done with the existing technologies we already know about. However, learning NextJs is totally worth it. 
+ 
+
+NextJs is a framework you will never regret learning. This is one of my favorite JavaScript frameworks. It provides endless possibilities for developing beautiful applications. NextJs is a React-based production framework using which we can develop React websites with great convenience.  Well, what convenience exactly does NextJs provide?
+
+
+It supports,
+
+Server-Side Rendering (SSR)
+Static Site Generation (SSG)
+Built-in Router 
+And a lot of other tools for SEO of websites.
+ 
+Essentially, NextJs has revolutionized the process of routing through its file-based routing, which we are going to learn about in the coming videos. Summarising, using NextJS helps you develop React websites in a very easy, convenient, and SEO-friendly way. 
+
+
+With the help of NextJs, you get a lot of options for rendering on your website. NextJs is a great tool for static websites with no backend connections. If you wish, NextJs will provide you API routes as well, so it is not simply a front-end framework but also a back-end framework in some way or the other. And that enables you to program both the front end and the back end in NextJs.
+
+
+A typical react application is rendered on the client-side, i.e., the Javascript bundle is loaded and then takes over to populate the dom using ajax calls. And if you could somehow open the source code of some React application, you wouldn't find the page content there itself because the content, in most of the cases, gets populated later through JavaScript. Well, this counts as one big problem for social media websites and search engines as they cannot find content in the HTML rendered by the react app. Well, NextJs addresses all such shortcomings a simple React application has, simply by introducing static site generation and server-side rendering, which ships the populated DOM to the client's browser!
+
+
+And further today, we will install NextJS and see what tools we need to install to start using NextJs right away. And we will also set everything up in that regard which I recommend you all to follow for having a smooth and convenient experience building great applications. So, without any further ado, let’s get started.
+
+ 
+
+Installing Node.js and npm
+Follow the below-mentioned steps to build the whole setup you will need to start using NextJs:
+
+1. So, move into your browsers, and we’ll start by downloading Node Js and the version that is recommended for most users.
+
+2. Install NodeJs through the installer with all default settings. That may take some time. Wait while it finishes.
+
+3. And now, I hope you all have already downloaded and installed VS Code on your systems. Download and install now, if you haven’t already. 
+
+4. I have created a folder named NextJs Course and this is where I’ll put all my files pertaining to the course.
+
+5. Open VsCode in the same folder.
+
+
+Now, you might wonder if learning JavaScript or React is necessary to utilize NextJS, and my answer would be, yes! You do need to know the basics but that is what I’ll do in the beginning, and knowing things as and when required. We'll brush up on JavaScript basics as well as refresh our previous knowledge too.
+
+
+Let’s now see how we develop Next Applications:
+
+Next App Creation
+Well, one can create individual files pertaining to Next applications too but we exploit a utility named Create Next App, and you can refer to the documentation Create Next App to have a knowledge of all of its uses. But that shouldn’t be a matter of worry for now since I'm here. There are methods we follow to create a Next app, but we solely stick to the yarn one for its advantages over npm. And that’s all we will cover in the coming videos while we slowly dive into the playlist.
+
+
+So, NextJs is basically nothing but a framework for React. And you will develop React only, but with a little more convenience, and better and a lot more features. This concludes our discussion for today. Next.js is used in tens of thousands of production-facing websites and web applications, including many of the world's largest brands. I simply cannot hold my excitement while we have to wait for the next video where we’ll build our first Next application.
+
+
+Access the playlist through codewithharry.com or my YouTube channel. As we just began this new topic, there is a lot more to come. See you all there in the next lecture. Till then keep learning.
