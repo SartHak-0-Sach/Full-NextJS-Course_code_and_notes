@@ -1,0 +1,3 @@
+Hi everyone, welcome to this NextJS course where I will be uploading all my notes from this course for all of you people to learn and follow along with. So let's jump right into it!!
+
+This lecture was an introductory lecture where nothing was taught and was about setting up your working environment by installing node LTS(long term support version) and doing your IDE setup which I and Harry prefer to be VS Code and is the best beginner friendly code IDE(Integrated Development Environment) out there.
