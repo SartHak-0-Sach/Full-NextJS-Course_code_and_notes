@@ -1,0 +1,38 @@
+Project 1: Hunting Coder - A Coder's Blog
+
+Well, going bookish has never been my way to teach. Instead, I've always preferred hands-on learning. So, we’ll start right away with a project where we’ll exploit the applications of Next Js to create a blog page and let’s name it Hunting Coder. 
+ 
+
+Hunting Coder would be a blog page where there will be a system to publish blog posts and it won't just be a project for the sake of it, but something you'll love to continue to work on in the future as your personal blog or something. This blog page will post articles related to programming and other topics that will positively contribute to the coders' community. We’ll also integrate all that we have learned so far about Next Js, be it its property of Server Side Rendering or Server Side Generation and other search optimization tools. In this project, we will explore some of the most important topics of Next Js. Additionally, we'll explore the deployment of the site, and learn stuff necessary to build this beautiful website which not only strengthens your concepts but helps you build a strong profile.
+
+So, let’s just get started with the project.
+ 
+
+Creating the HuntingCoder App
+Choose the directory of your choice and open your PowerShell window where you want your app to get built. Now, simply run the following command in your terminal as we have done already in the previous lectures. We have named our project huntingcoder.
+
+yarn create next-app huntingcoder
+ 
+
+This might take a while. Once completed the creation of the next app, we will change the directory to the huntingcoder using the command cd. And open VSCode ther itself using the shortcut code . command.
+
+cd huntingcoder
+ 
+
+Yarn dev is the command we use to execute the app into our localhost. So, put the following command in your VSCode terminal.
+
+yarn dev
+ 
+
+This will start the development server. Open the URL http://localhost:3000 (the URL shown in the terminal) by pressing control and clicking on it. There is one default template for now which comes integrated with the app itself.
+ 
+
+Manipulating the home page
+We had already discussed the files you must be seeing there in the huntingcoder folder. And having refreshed the basics of JavaScript and React, we must be able to recollect a few things. It's the pages folder that holds the most importance for now, since it contains the pages, we can edit directly and the changes will appear on the website. These are the React based components which follow everything we learnt while using React. To mention a few, 
+ 
+
+We use JSX and not proper HTML.
+class is replaced by className.
+Any erroneous code would simply throw errors, unlike HTML which could handle things a bit better. For example, an extra closing div bracket in HTML would not cause an error. Next Js is therefore more precise than HTML.
+
+For now, just not to complicate things, I will go with the default template with a little change in the CSS of the website and the content. Considering there are cards that would feature your best blogs and other content following them, it is already suitable for a beginner blogging website. The next step will definitely be to upgrade to something better. And that would eventually come with good knowledge of Next Js. With that being said, I will end this here itself.
