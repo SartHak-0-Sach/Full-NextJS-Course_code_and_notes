@@ -1,0 +1,92 @@
+In the last lecture, we dealt with the Head and the Script components of Next Js. Today, we'll look at the Image component. At times, when you use HTML, CSS, or JavaScript or any other framework, it can happen that when you embed an image into your programs, you complain about it taking forever to load on the website because of the size of the image. As a result, your site runs slower and your search engine optimization is ruined.
+
+As for Next Js, it has improvised on this front too. Next Js provides an Image component. Image component automatically optimises your images. By default, images in this component are lazy loaded. As a result, the loading time of the website is greatly reduced since only images in the viewport - that is, on the screen - get rendered and not those that are not visible to you. It is through tools like these that Next Js is strengthened. Now let's take a closer look at the Image component.
+
+
+Next Js Image Component
+Open the same folder where you have created the hunting coder application. The default template of the application contains an import named Image from next/image in the index.js file similar to what we studied in the Head component. 
+
+import Image from 'next/image'
+ 
+
+Now, let me tell you what this Image component does.
+
+It provides you with optimised images.
+By default, images are lazy loaded which means that images which are not visible to you or are not there in your viewport would not get loaded.
+Helps you make your images responsive conveniently.
+ 
+
+There are a number of attributes this Image component comes with. We’ll discuss some of the most used and important ones. So, let’s start with running the development server using command yarn dev.
+ 
+
+You must find a default card set on the website. I’ll remove them first since I don’t need them to be there on my website. I’ll start by creating a <div> element having className blogs. This holds my list of blogs. Inside this <div> element, there is a heading named Popular Blogs. create another <div> element having className blogItem. This holds my individual blog post. Each blog would contain a heading <h1> and a paragraph <p> associated with it. So, the structure of the blog page would be something like this.
+
+        <div className="blogs">
+          <h2>Popular Blogs</h2>
+          <div className="blogItem">
+            <h3>How to learn JavaScript in 2022?</h3>
+            <p>JavaScript is the language used to design logic for the web</p>
+          </div>
+          <div className="blogItem">
+            <h3>How to learn JavaScript in 2022?</h3>
+            <p>JavaScript is the language used to design logic for the web</p>
+          </div>
+          <div className="blogItem">
+            <h3>How to learn JavaScript in 2022?</h3>
+            <p>JavaScript is the language used to design logic for the web</p>
+          </div>
+        </div>
+ 
+
+Each of these blog items would get displayed using a loop. We will add our css in some later part of the tutorial. For now, we are planning out things we want to have on our website. It would also be handy to have a navigation bar on our website for convenience in browsing pages. So, let’s just get ourselves a nav component which is very easy to integrate.
+
+
+Adding a Nav Component
+First of all, add a <nav> element in the index.js file. Add a <ul> tag with for list elements inside the <li> tags namely Home, About, Blog and Contact. Here’s what the code looks like.
+
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Blog</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+ 
+
+But this surely doesn't appeal to us as a navigation bar. We would need to define a CSS styling for it to look like one.
+
+
+Styling the nav component
+Give a className to the nav component, say, mainnav. So, this goes as {style.mainnav} Since we don't want every similar component to have the same styling, defining a className is helpful.
+
+Now move on to the main CSS file Home.module and add the CSS snippet provided below.
+
+
+.mainnav ul{
+  display: flex;
+  justify-content: center;
+    margin-top: 50px;
+}
+ 
+.mainnav ul li{
+  margin: 0 24px;
+    list-style: none;
+    font-weight: bold;
+}  
+
+We have changed our navigation component to a flexbox and with some proper coherent margins and paddings, it has come out well. Update the styling of the main component to the one given below.
+ 
+
+.main {
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 3rem;
+}
+
+We're now ready to proceed. This was our navigation component. We could have done more styling of the components but that is not our main focus here for now. We have done just enough of them to proceed. The final home page somewhat looks like this.
