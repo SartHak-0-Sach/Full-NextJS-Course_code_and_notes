@@ -1,0 +1,631 @@
+As we've discussed previously, being familiar with Javascript and React is necessary in order to get started with NextJS. The obviousness of the above fact might bother some of you. Yet to help you all with that is exactly what I am here for, right? We will cover all of Javascript and React that is needed to get you all started with NextJs. So, let’s just begin.
+ 
+
+JavaScript
+So, I won't start from the beginning covering every single functionality, rather I will just cover some things I perceive you might get yourself caught up in. Async Await, Destructuring, Promises and Callback, Spread operator are a few of them. And since we have already downloaded Node Js, there is nothing more you would need for now. So, let’s just get started with them.
+ 
+
+1. Spread Operator
+Suppose we have a javascript array arr containing integers and we want to pass the contents of this array into a function avg which takes three numbers and returns their average. 
+
+The syntax for the spread operator is three dots(...). So, when we pass this array arr containing three elements into the function avg, using the spread operator, it gets dilated itself, and we get our desired output. 
+
+// Spread operator
+arr = [1, 2, 4]
+ 
+function avg(a, b, c) {
+    return (a + b + c) / 3
+}
+ 
+let a = avg(...arr)
+console.log(a)
+And you might wonder what happens if there were more numbers in the array. Well, any number of extra inputs gets ignored by the function. So, there isn’t anything to worry about. 
+
+ 
+
+Another interesting use case of the spread operator is that we can copy an existing array into an entirely new array. We can even concatenate the contents of two different arrays into another different or new array. 
+
+arr = [1, 2, 4, 6, 32]
+let a = [4, 7, ...arr, 67]
+//makes a = [4, 7, 1, 2, 4, 6, 32, 67]
+ 
+let b = [...arr]
+//makes b = [1, 2, 4, 6, 32]
+ 
+d = [5, 7, 9]
+let c = [...arr, ...d]
+//makes c = [1, 2, 4, 6, 32, 5, 7, 9]
+ 
+
+Let’s now see how the spread operator works on javascript objects. Suppose we have a javascript object obj1 having names, name1, class1 and favLang and values Harry, 5b and JavaScript respectively. Now, we want to create a different object obj2 where everything is the same as that of obj1 except the fact that the favLang should be Python and not JavaScript. Well, that could also be done using a naive method, using the dot method, but the spread operator makes it a one-liner. We just have to feed obj1 into obj2 and write all that we want to change as we have done below.
+
+let obj1 = {
+    name1: "Harry",
+    class1: "5b",
+    favLang: "JavaScript"
+}
+ 
+//naive method
+// let obj2 = {}
+// obj2.name1 = obj1.name;
+// obj2.class1 = obj1.class;
+// obj2.favLang = "Python";
+ 
+//using spread operator
+let obj2 = { ...obj1, favLang: "Python" }
+ 
+
+2. Destructuring
+Suppose we still have the JavaScript object obj1 and we have three different variables named name1, class1, favLang and that we would like to give these variables the same values as those given in the object obj1. Again, the naive approach would be to do them individually, but JavaScript allows you to do the same thing in just a single line. You simply have to comma separate the variables in a curly bracket and feed them the object variable whose values they need to possess.
+
+let obj1 = {
+    name1: "Harry",
+    class1: "5b",
+    favLang: "JavaScript"
+}
+ 
+//naive method
+// let name1 = obj1.name;
+// let class1 = obj1.class;
+// let favLang = obj1.favLang;
+ 
+//Destructuring
+let { name1, class1, favLang } = obj1;
+ 
+
+3. Async Js
+JavaScript is asynchronous in nature. It is different from other programming languages where they have a blocking nature. The blocking nature refers to the fact that they don't execute a line until all lines preceding it has been executed. JavaScript doesn't actually wait for a line to get executed before moving on to the next one. Follow the snippet below:
+
+// 1
+console.log("Harry is a good boy!");
+// 2
+setTimeout(() => {
+    console.log("Harry is inside setTimeout");
+}, 1000);
+// 3
+console.log("Harry is a bad boy!");
+ 
+
+Here, any other programming language would have executed lines in order 1,2, and 3. But since line 2 demands a Timeout of 1000ms i.e. a second, JavaScript doesn't wait for that timeout to get finished rather it moves ahead, and executes line 3 first, and then line 2 after a second.
+
+Harry is a good boy!
+Harry is a bad boy!
+Harry is inside setTimeout
+ 
+
+4. Promises and Callback
+We’ll use the file system module fs which is a module to read files in NodeJs. Using that we’ll read a file named file.txt encoded using utf-8. It takes some time to read a file, but that doesn't stop the program from executing lines that follow. Follow what the snippet says.
+
+let fs = require("fs");
+ 
+fs.readFile("file.txt", "utf-8", (err, data) => {
+    console.log(err, data);
+})
+ 
+console.log("This is eof")
+Here, the readFile method just makes sure that fs reads the file file.txt using the utf-8 formatting, and calls the function as soon as it finishes reading the file. And while the program reads the file, it wouldn't sit idle rather execute lines that follow. And that is why the output has the second line printed first.
+
+ 
+
+This is eof
+null Harry is a good boy
+So, this was a callback. Imagine how chaotic and unorganized things would get if there were multiple nested callbacks. And that is why we use promises.
+
+ 
+
+Javascript file system module has a promise feature where the readFile method returns a promise and this state can even be stored. We can then use a dot then method to command the program about what it would do after the promise resolves or the file gets read. 
+
+// let fs = require("fs");
+let fs = require("fs/promises");
+ 
+let a = fs.readFile("file.txt", "utf-8");
+a.then((data) => {
+    console.log(data);
+})
+ 
+console.log("This is eof")
+And now, it would be comparatively much more readable than callbacks.
+
+ 
+
+5. Async - Await
+Consider the same file system module fs and let's make a function named readThree whose job would be to read three text files. The function takes three argument files, file1, file2 and file3 and reads them using the methods we discussed above. Now, it might be the case that file 2 gets read before file 1 or vice versa. So, it's pretty unpredictable. 
+
+And this is where we use the async await method which makes it possible for the program to follow the order we decide.
+
+let fs = require("fs/promises");
+ 
+const readThree = async (file1, file2, file3) => {
+    let a1 = fs.readFile("file1.txt", "utf-8");
+    let a2 = fs.readFile("file2.txt", "utf-8");
+    let a3 = fs.readFile("file3.txt", "utf-8");
+    let c1 = await a1;
+    console.log(c1);
+    let c2 = await a2;
+    console.log(c2);
+    let c3 = await a3;
+    console.log(c3);
+}
+And this is how you convert an asynchronous non- blocking program into a sort of blocking one if I were to put it straight and simple. 
+
+ 
+
+6. JavaScript Map
+Javascript map is one of the most useful methods. It is primarily used to traverse every element of an array while calling a function on each of them. It doesn't change the original array in any way, rather returns a new array. 
+
+let a = [1, 2, 3, 4, 5];
+let a2 = a.map((value) => {
+    return value * 2;
+})
+// a2 = [2, 4, 6, 8, 10]
+ 
+
+7. Filter
+JavaScript filter is a javascript method to filter elements out of a container based on some parameter. Suppose there is an array of numbers and we want to create another array out of the elements of the first array having value greater than 6.
+
+let a = [1, 2, 3, 4, 5, 64, 34, 12, 9];
+let a2 = a.filter((value) => {
+    return value > 6;
+})
+// a2 = [64, 34, 12, 9]
+ 
+
+8. Reduce
+JavaScript reduce is another method that takes two elements of an array at a time. It applies any of the user-defined operators and returns a single value in the end which is the combined result of the whole array.
+
+let a = [1, 2, 3, 4];
+let a2 = a.reduce((val1, val2) => {
+    return val1 + val2;
+})
+// step1: 1+2, 3, 4
+// step2: 3+3, 4
+// step1: 6+4
+// a2=10
+So, here we added the whole array. It could have been any operator.
+
+ 
+
+9. Triple Equality
+Triple equality is a very simple concept. In contrast to other programming languages, where we compare two elements by using a double equality operator, JavaScript first converts both elements to the same data type before comparing them. With this, (1==“1”) return True. Therefore, we have a triple equality operator, which returns True only when the value and data type both are the same for two elements.
+
+if (1 === "1") {
+    console.log("I am true")
+}
+else {
+    console.log("I am false")
+}
+//Outputs I am false.
+That was enough JavaScript I believe for you to catch up on things. Let’s get started with the React basics.
+
+ 
+
+React
+It might already be clear to you that we put React components in the pages folder while NextJs is implemented. And that makes learning React an integral part of NextJs. Now the reason why React came into existence was to make user interfaces development easy. 
+
+ 
+
+React is a JavaScript library that is used to develop single-page applications. Single-page applications mean that applications developed using React do not require reloading to navigate between pages. This ensures a smooth user experience. React pages are built using JSX (JavaScript Syntax Extension), which is nothing but HTML with additional features that allow us to use JavaScript. React further lets you divide complex websites into simpler components. This saves us time when we need to change something for one particular section, and we can just make changes in one place.
+
+We’ll now be working towards developing a simple application that would cover all the basics of React.
+
+ 
+
+Installation
+We have already downloaded Node Js. To check if it’s there on your system, use the command npm -v in your powershell. 
+
+ 
+
+Creating React App:
+Choose the directory of your choice and open your PowerShell window where you want your app to get built. Now, simply run the following command in your terminal. Here, we have used the name todos-list as the name of our application. Npx is an npm package runner.
+
+npx create-react-app todos-list
+The installation of different useful packages might take some time. Once done, a folder named todos-list will appear there in the directory. Now, open that folder in VS Code. To give you a quick review of what those files are, there are two important folders, Public and src which contain an HTML file which is the only HTML file of the application and different utilities, css and js files respectively.
+
+ 
+
+And now, we’ll start our development server by running the command,
+
+npm start
+This will redirect you to your browser where your application will start running at http://localhost:3000/. Having completed all the initials, we are now ready to move on to developing our project further.
+
+ 
+
+App js is the file where the current JSX for the default page is written which is rendered through the index.js. App js has a function that returns a JSX template. Well, HTML and JSX have subtle differences, so be sure not to mix them up. JSX className corresponds to HTML class. You can write JavaScript in JSX only by using curly brackets. So, anything you return in those functions should be wrapped in another JSX element, be it empty tags.
+
+ 
+
+Let’s now move further creating separate components for our website. But before that, you should have enabled the use of Bootstrap in your program. Just put these two codes in your index.html. The JS part should be put down below the body tag and the CSS part should be put in the head tag.
+
+ 
+
+JavaScript
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+ 
+
+CSS
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+ 
+
+Now, we wouldn’t want everything to be developed in the same App component, rather we’ll use this App component to lead all the other components we’ll create starting with the Header Component.
+
+ 
+
+Creating the Header Component
+This component will contain the navigation bar of our React app. For convenience, we’ll put all our components inside a new folder named MyComponents inside the same src folder. Create a new file named Header.js inside that. Since the header component contains only the nav bar for our project, we will return the code for the navigation bar inside the react functional component. Below is what our header.js would look like after inserting the code for the navigation bar.
+
+import React from 'react'
+ 
+export default function Header(props) {
+    return (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="#">{props.title}</a>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">About</a>
+                        </li>
+ 
+                    </ul>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    )
+}
+ 
+
+Props are nothing but parameters which are Javascript objects passed from the parent component to the child component. Import the Header component inside the App.js file since that is one main component. So, put the below code in the App.js file to import the header there. 
+
+ 
+
+Your App.js should look like the below code to render your Header file. We have used the title as a parameter that can be passed from App.js to Header.js. 
+
+import './App.css';
+import Header from './MyComponents/Header'
+ 
+function App() {
+  return (
+    <>
+    <Header title="ToDos List"/>
+    </>
+  );
+}
+ 
+export default App;
+Well, what if we don’t pass anything for the prop object from the parent component. That particular prop will get a value undefined and for reducing that vulnerability, we use the defaultProps option.
+
+ 
+
+The Default Props property sets the defaults values for props attributes if the parent component does not send values for the attributes. You simply have to put this code in your header file. This sets the default title value to Your title here.
+
+Header.defaultProps = {
+    title: "Your title here"
+}
+Having done the Header component, we’ll move to complete our other components.
+
+ 
+
+Next, we have the Todo Component, which will contain the list of all the ToDo Items.
+
+Create another file named ToDos in MyComponents and don’t forget to import it in the main App component. 
+
+ 
+
+For now, we’ll just put some items ourselves in a JavaScript object named todos. Pass this object as a prop to the ToDos file. Your App.js must look like this now.
+
+import './App.css';
+import Header from './MyComponents/Header'
+import { Todos } from './MyComponents/Todos'
+ 
+function App() {
+  let todos = [
+    {
+      sno: 1,
+      Title: "Go to the market",
+      Desc: "You need to go to the market to buy some fresh vegetables"
+    },
+    {
+      sno: 2,
+      Title: "Go to the mall",
+      Desc: "You need to go to the mall to buy some gucci shoes"
+    },
+    {
+      sno: 3,
+      Title: "Go to the voting center",
+      Desc: "You need to go to the voting center to vote"
+    }
+  ]
+  return (
+    <>
+      <Header title="ToDos List" />
+      <Todos todos={todos} />
+ 
+    </>
+  );
+}
+export default App;
+ 
+
+Now, we need to create our Todo component. The Todo component has a job to display all the ToDo items, and as per what we have learned lately, we can use the JavaScript Map method to do the same. So, Todos.js has the below-mentioned code.
+
+import React from 'react'
+import { TodoItem } from "./TodoItem";
+ 
+export const Todos = (props) => {
+    return (
+        <div className="container">
+            <h3 className="text-center my-3"> Todos List : </h3>
+            {props.todos.map((todo) => {
+                return <TodoItem todo={todo} />
+            })}
+ 
+        </div>
+    )
+}
+But for this to work, we must build our child component for Todos, the TodoItem component, whose only job is to display the item's content. So, create a new file named TodoItem.js in the same folder. Follow the snippet below.
+
+import React from 'react'
+ 
+export const TodoItem = ({ todo }) => {
+    return (
+        <div>
+            <h4>{todo.Title}</h4>
+            <p>{todo.Desc}</p>
+        </div>
+    )
+}
+This should display all the items we hardcoded. But now, we have to make it dynamic. We will add the buttons to add and delete the items from the list.
+
+ 
+
+Delete button
+
+Add a button element in the TodoItem file. For this to work, we’ll use another prop, named onDelete which will have a method {onDelete}. This method is originally created in the App file, passed onto as a prop to the Todos file, and from there to the TodoItem file. And there we use the onclick event to call the method with the parameter it demands. Carefully follow the changes we have done to the files to implement this delete button. 
+
+ 
+
+App.js file :
+
+import './App.css';
+import Header from './MyComponents/Header'
+import { Todos } from './MyComponents/Todos'
+import { TodoItem } from './MyComponents/TodoItem'
+import React, { useState } from 'react';
+ 
+function App() {
+ 
+  const onDelete = (todo) => {
+    setTodos(todos.filter((e) => {
+      return e !== todo;
+ 
+    }));
+  }
+ 
+  const [todos, setTodos] = useState([
+ 
+    {
+      sno: 1,
+      Title: "Go to the market",
+      Desc: "You need to go to the market to buy some fresh vegetables"
+    },
+    {
+      sno: 2,
+      Title: "Go to the mall",
+      Desc: "You need to go to the mall to buy some gucci shoes"
+    },
+    {
+      sno: 3,
+      Title: "Go to the voting center",
+      Desc: "You need to go to the voting center to vote"
+    },
+ 
+  ]);
+  return (
+    <>
+      <Header title="ToDos List" />
+      <Todos todos={todos} onDelete={onDelete} />
+    </>
+  );
+}
+export default App;
+ 
+
+Todos.js file:
+
+import React from 'react'
+import { TodoItem } from "./TodoItem";
+ 
+export const Todos = (props) => {
+    let myStyle = {
+        minHeight: "70vh",
+        margin: "40px auto"
+    }
+    return (
+        <div className="container" style={myStyle}>
+            <h3 className="my-3">Todos List</h3>
+            {props.todos.length === 0 ? "No Todos to display" :
+                props.todos.map((todo) => {
+                    console.log(todo.sno);
+                    return (<TodoItem todo={todo} key={todo.sno} onDelete={props.onDelete} />
+                    )
+                })
+            }
+        </div>
+    )
+}
+ 
+
+TodoItem.js file:
+
+import React from 'react'
+ 
+export const TodoItem = ({ todo, onDelete }) => {
+    return (
+        <>
+            <div>
+                <h4>{todo.title}</h4>
+                <p>{todo.desc}</p>
+                <button className="btn btn-sm btn-danger" onClick={() => { onDelete(todo) }}>Delete</button>
+            </div>
+            <hr />
+        </>
+    )
+}
+ 
+
+We used the useState hook to accomplish the job. Now, the delete button works all good. Next thing is to develop the add items functionality and for that we’ll create another file named AddTodo.js. AddTodo is the component where we have a form and the user enters the title and the description of the new job he wants to add to the list. Make sure you import them in the concerned files. Follow the code for the AddTodo file below.
+
+import React, { useState } from 'react';
+ 
+export const AddTodo = ({ addTodo }) => {
+    const [title, setTitle] = useState("");
+    const [desc, setDesc] = useState("");
+ 
+ 
+    const submit = (e) => {
+        e.preventDefault();
+        if (!title || !desc) {
+            alert("Title or Description cannot be blank");
+        }
+        else {
+            addTodo(title, desc);
+            setTitle("");
+            setDesc("");
+        }
+    }
+    return (
+        <div className="container my-3">
+            <h3>Add a Todo</h3>
+            <form onSubmit={submit}>
+                <div className="mb-3">
+                    <label htmlFor="title" className="form-label">Todo Title</label>
+                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="form-control" id="title" aria-describedby="emailHelp" />
+ 
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="desc" className="form-label">Todo Description</label>
+                    <input type="text" value={desc} onChange={(e) => setDesc(e.target.value)} className="form-control" id="desc" />
+                </div>
+                <button type="submit" className="btn btn-sm btn-success">Add Todo</button>
+            </form>
+        </div>
+    )
+}
+ 
+
+Submitting the form calls for the submit method which checks if the content is there, and if it is, it calls the method addTodo with the data fed to it as parameters. This addTodo is a function originally created in App.js. To update the todo list, we simply use the spread operator we learnt recently. Follow the final code for App.js below.
+
+import './App.css';
+import Header from "./MyComponents/Header";
+import { Todos } from "./MyComponents/Todos";
+import { AddTodo } from "./MyComponents/AddTodo";
+import { About } from "./MyComponents/About";
+import React, { useState, useEffect } from 'react';
+ 
+function App() {
+  let initTodo;
+  if (localStorage.getItem("todos") === null) {
+    initTodo = [];
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
+ 
+ 
+  const onDelete = (todo) => {
+    console.log("I am ondelete of todo", todo);
+    // Deleting this way in react does not work
+    // let index = todos.indexOf(todo);
+    // todos.splice(index, 1);
+ 
+    setTodos(todos.filter((e) => {
+      return e !== todo;
+    }));
+    console.log("deleted", todos)
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+ 
+  const addTodo = (title, desc) => {
+    console.log("I am adding this todo", title, desc)
+    let sno;
+    if (todos.length === 0) {
+      sno = 0;
+    }
+    else {
+      sno = todos[todos.length - 1].sno + 1;
+    }
+    const myTodo = {
+      sno: sno,
+      title: title,
+      desc: desc,
+    }
+    setTodos([...todos, myTodo]);
+    console.log(myTodo);
+  }
+ 
+  const [todos, setTodos] = useState(initTodo);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos])
+ 
+  return (
+    <>
+     <Header title="ToDos List" />
+     <AddTodo addTodo={addTodo} />
+     <Todos todos={todos} onDelete={onDelete} />
+   </>
+  );
+}
+ 
+export default App;
+ 
+
+Key changes we made:
+
+We checked if the serial number is currently at least 0. Otherwise, we directly set the serial number for the new entry to 0.
+We didn’t hardcode some elements in the list ourselves. We connected it to the local storage. LocalStorage is a storage object to store the data on the computer locally. We save our content locally, converting them into JSON.
+We used the useEffect hook to save our data in the local storage after any change was made.
+ 
+
+Using React Router:
+Now, this was just a page of our website. We want to have zero reloading for any inter-page transition. So that if we have another page, say named about, we could render it in between the same header and footer without any need for reloading. For that, install react-router-dom using npm.
+
+npm install react-router-dom@5.2.0
+ 
+
+Follow what we did to the JSX part of the App.js file.
+
+return (
+    <>
+      <Router>
+        <Header title="My Todos List" searchBar={false} />
+        <Switch>
+          <Route exact path="/" render={() => {
+            return (
+              <>
+                <AddTodo addTodo={addTodo} />
+                <Todos todos={todos} onDelete={onDelete} />
+              </>)
+              }}>
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  );
+
